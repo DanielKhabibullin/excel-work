@@ -1,0 +1,288 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 20px;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.upload-section {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 2px dashed #ccc;
+  text-align: center;
+}
+
+.upload-section.dragover {
+  border-color: #007bff;
+  background-color: #e3f2fd;
+}
+
+.file-input-label {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.file-input-label:hover {
+  background-color: #0056b3;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.file-info {
+  margin-top: 15px;
+  color: #666;
+  font-size: 14px;
+}
+
+.table-container {
+  overflow-x: auto;
+  max-height: 600px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+th {
+  background-color: #007bff;
+  color: white;
+  font-weight: 600;
+  padding-left: 5px;
+  /* padding: 12px; */
+  text-align: left;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+td {
+  /* padding: 10px 12px; */
+  padding-left: 5px;
+
+  border-bottom: 1px solid #ddd;
+  color: #333;
+}
+
+tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+/* Стили для объединенных строк */
+tr.combined-row td {
+  /* background-color: #e6f3ff !important; */
+}
+
+tr.combined-leftright td {
+  /* background-color: #e6ffe6 !important; */
+}
+
+/* Разделители */
+tr.separator-row td {
+  background-color: #e0e0e0 !important;
+  color: #333;
+  font-weight: bold;
+  text-align: center;
+  padding: 8px;
+  letter-spacing: 1px;
+}
+
+.stats {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #e9ecef;
+  border-radius: 5px;
+  color: #495057;
+  font-size: 14px;
+}
+
+.loading {
+  display: none;
+  text-align: center;
+  padding: 40px;
+  color: #007bff;
+  font-size: 18px;
+}
+
+.error {
+  color: #dc3545;
+  padding: 20px;
+  text-align: center;
+  background-color: #f8d7da;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+/* Уменьшение ширины столбцов и смещение влево */
+table {
+  table-layout: auto;
+  width: auto !important;
+  min-width: 100%;
+}
+
+th, td {
+  white-space: nowrap;        /* Запрет переноса текста */
+  max-width: none !important;
+}
+
+/* Первый столбец (Номенклатура) - минимальная ширина по контенту */
+th:first-child, td:first-child {
+  width: 1%;                  /* Минимальная ширина */
+  white-space: nowrap;
+  padding-right: 15px;
+}
+
+/* Второй и третий столбцы - тоже минимальные */
+th:nth-child(2), td:nth-child(2),
+th:nth-child(3), td:nth-child(3) {
+  width: 1%;
+  white-space: nowrap;
+  text-align: left;
+}
+
+/* Четвертый столбец (если есть) - тоже влево */
+th:nth-child(4), td:nth-child(4) {
+  width: 1%;
+  white-space: nowrap;
+}
+
+/* Контейнер таблицы теперь подстраивается под содержимое */
+.table-container {
+  overflow-x: auto;
+  max-height: 100vh;
+  height: calc(100vh - 40px);
+  width: 100%;
+  display: block;
+}
+
+/* Для ячеек с объединенным контентом - тоже без переноса */
+td {
+  overflow: hidden;
+  text-overflow: ellipsis;    /* Если очень длинные - троеточие */
+}
+
+td:nth-child(3) {
+  text-align: center;  /* цифры по центру */
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+/* Кнопки управления строками */
+.row-actions {
+  display: flex;
+  gap: 2px;
+  margin-right: 8px;
+  white-space: nowrap;
+}
+
+.row-btn {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid #ccc;
+  background-color: #f8f9fa;
+  cursor: pointer;
+  font-size: 12px;
+  border-radius: 3px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.row-btn:hover {
+  background-color: #e9ecef;
+  border-color: #999;
+}
+
+.row-btn.delete-btn {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+.row-btn.delete-btn:hover {
+  background-color: #dc3545;
+  color: white;
+  border-color: #dc3545;
+}
+
+.row-btn.red-text-btn {
+  color: #dc3545;
+}
+
+.row-btn.red-text-btn:hover {
+  background-color: #ffebee;
+}
+
+.row-btn.bg-red-btn {
+  background-color: #ffcdd2;
+  color: #b71c1c;
+}
+
+.row-btn.bg-red-btn:hover {
+  background-color: #ef9a9a;
+}
+
+.row-btn.bg-yellow-btn {
+  background-color: #fff9c4;
+  color: #f57f17;
+}
+
+.row-btn.bg-yellow-btn:hover {
+  background-color: #fff59d;
+}
+
+/* Контейнер для названия и кнопок */
+.name-with-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Ячейка с названием теперь гибкая */
+td:first-child {
+  white-space: nowrap;
+}
+
+/* Текст названия */
+.item-name {
+  display: inline-block;
+}
